@@ -6,13 +6,19 @@
  */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+import Invoices from 'data/Invoices';
 
-export default function HomePage() {
-  return (
-    <h1>
-      <FormattedMessage {...messages.header} />
-    </h1>
-  );
+class HomePage extends React.Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
+
+  render() {
+    console.log(Invoices);
+
+    return <div>hej från template</div>;
+  }
 }
+
+export default HomePage;
