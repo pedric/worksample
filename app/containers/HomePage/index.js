@@ -34,14 +34,16 @@ class HomePage extends React.Component {
       background: `url(${BackgroundImage})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
-    };
+    }
 
     return (
       <div style={flexBoxStyles}>
         <div className="listWrapper">
-          <Header data={this.state.content} />
-          <FilterBox />
-          <Table invoices={this.state.invoices} />
+        	<Header data={this.state.content} />
+        	<FilterBox />
+        	<div className="box">
+        		<Table invoices={this.state.invoices} />
+        	</div>
         </div>
         <div style={modalStyles} className="modalWrapper" />
       </div>

@@ -7,6 +7,7 @@ for (let i = 0; i < numberOfInvoices; i++) {
   const accountHolder = Faker.name.lastName(); // Set this here to get the same name on account and alt-text
 
   Invoices[i] = {
+  	id: i,
     type: Faker.random.arrayElement(['savings', 'checking']),
     name: `${Faker.random.number({
       min: 10000000000,

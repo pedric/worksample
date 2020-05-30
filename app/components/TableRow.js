@@ -1,14 +1,19 @@
 import React from 'react';
-
+  
 function TableRow(props) {
-  console.log(props);
+	const styles = {
+		height: '44px'
+	}
+
+  let status = props.items.status ? 'active' : 'deactivated'
+  
   return (
-    <tr>
-      <th>Type</th>
-      <th>Account name</th>
-      <th>Status</th>
-      <th>Currency</th>
-      <th>Balance</th>
+    <tr className='table__row' style={styles}>
+      <td>{props.items.type}</td>
+      <td>{props.items.name}</td>
+      <td>{status}</td>
+      <td>{props.items.currency}</td>
+      <td>{props.items.balance}</td>
     </tr>
   );
 }
