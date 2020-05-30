@@ -1,20 +1,18 @@
-import React from 'react'
+import React from 'react';
 
 class FilterBox extends React.Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
 
-	constructor(){
-		super()
-		this.state = {}
-	}
-
-	render(){
-
-		return(
-			<div>
-			<h2>FILTERBOX KOMPONENT</h2>
-			</div>
-		)
-	}
+  render() {
+    return (
+      <div>
+        <h2>FILTERBOX KOMPONENT</h2>
+      </div>
+    );
+  }
 }
 
-export default FilterBox
+export default FilterBox;
