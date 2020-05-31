@@ -1,9 +1,22 @@
 import React from 'react';
+import FilterBox from 'components/FilterBox';
 
 class FilterButton extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
-    this.state = {};
+    this.state = {
+    	filterBox: false,
+    	filter: props.filter
+    };
+    this.toggleFilterBox = this.toggleFilterBox.bind(this)
+  }
+
+  toggleFilterBox(){
+  	this.setState(prevState => {
+  		return (
+  			{ filterBox: !prevState.filterBox }
+  		)
+  	})
   }
 
   render() {
@@ -25,12 +38,16 @@ class FilterButton extends React.Component {
       padding: '2px',
       margin: '0 2px',
     };
+
     return (
-      <button style={buttonStyles}>
-        <span style={dotStyles} />
-        <span style={dotStyles} />
-        <span style={dotStyles} />
-      </button>
+    	<div style={{position:'relative'}}>
+	      <button style={buttonStyles} onClick={this.toggleFilterBox}>
+	        <span style={dotStyles} />
+	        <span style={dotStyles} />
+	        <span style={dotStyles} />
+	      </button>
+	      <FilterBox status={this.state.filterBox} filter={this.state.filter}/>
+	     </div>
     );
   }
 }

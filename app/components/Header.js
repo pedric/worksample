@@ -7,12 +7,13 @@ function Header(props) {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
+    padding: '0 0 20px 0'
   };
 
   return (
     <header style={styles}>
       <Title title={props.data.title} />
-      <FilterButton />
+      <FilterButton filter={props.filter} />
     </header>
   );
 }

@@ -1,5 +1,3 @@
-import React from 'react';
-
 function TableRow(props) {
 	const styles = {
 		height: '44px'
@@ -8,7 +6,7 @@ function TableRow(props) {
   let status = props.item.status ? 'active' : 'deactivated'
 
   return (
-    <tr className='table__row' style={styles} onClick={() => props.toggleModal(props.item, true)}>
+    <tr className='table__row' style={styles} onClick={props.toggleModal(props.item)}>
       <td>{props.item.type}</td>
       <td>{props.item.name}</td>
       <td>{status}</td>
@@ -17,5 +15,3 @@ function TableRow(props) {
     </tr>
   );
 }
-
-export default TableRow;

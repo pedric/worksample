@@ -57,6 +57,11 @@ const GlobalStyle = createGlobalStyle`
   .table__row {
     height: 44px;
 
+    &:hover {
+      background: #F2F2F2;
+      cursor:pointer;
+    }
+
     th {
 
       span {
@@ -103,6 +108,54 @@ const GlobalStyle = createGlobalStyle`
   th {
     padding: 4px
   }
+
+  .filterbox {
+    display: none;
+    position: absolute;
+    background: lightgray;
+    padding: 10px;
+    width: 500px;
+    right: 0;
+    bottom: 0;
+    transform: translateY(100%);
+    z-index: 999;
+
+    &.active { display: block; }
+  }
+
+  .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 420px;
+
+    .modal__wrapper {
+      background: #fff;
+    }
+
+    .modal__imageWrapper {
+      position: relative;
+      width: 100%;
+      height: 185px;
+      overflow: hidden;
+
+      img {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+      }
+    }
+    
+    table {
+      width: 100%;
+    }
+  }
+
+  .ib { display: inline-block; }
+  button:hover { cursor:pointer;}
 `;
 
 export default GlobalStyle;
