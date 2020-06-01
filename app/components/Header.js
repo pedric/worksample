@@ -13,7 +13,7 @@ function Header(props) {
   return (
     <header style={styles}>
       <Title title={props.data.title} />
-      <FilterButton filter={props.filter} />
+      <FilterButton filter={props.filterFunction} />
     </header>
   );
 }

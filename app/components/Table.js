@@ -4,14 +4,45 @@ import Arrow from 'images/arrow.svg'
 
 class Table extends React.Component {
   constructor(props) {
-    super(props);
+    super();
     this.state = {
     	invoices: props.invoices,
     	activeInvoices: props.activeInvoices,
     	showPrevItems: props.showPrevItems,
     	showNextItems: props.showNextItems,
-    	toggleModal: props.toggleModal
+    	toggleModal: props.toggleModal,
+    	sortActiveArray: props.sortActiveArray
     }
+  }
+
+  componentWillReceiveProps(props){
+  	this.setState({activeInvoices: props.activeInvoices})
+  }
+
+  numberOfFirstItem(){
+  	// this.state.activeInvoices[0].id
+  	let sortedArray = this.state.activeInvoices
+  	let lowestId = ''
+  	sortedArray.sort(function(a,b){
+			let id_a = a.id
+			let id_b = b.id
+				return parseFloat( id_a ) - parseFloat( id_b )
+		})
+		lowestId = sortedArray[0].id
+  	return lowestId;
+  }
+
+  numberOfLastItem(){
+  	// this.state.activeInvoices[this.state.activeInvoices.length-1].id
+  	let sortedArray = this.state.activeInvoices
+  	let highestId = ''
+  	sortedArray.sort(function(a,b){
+			let id_a = a.id
+			let id_b = b.id
+				return parseFloat( id_a ) - parseFloat( id_b )
+		})
+		highestId = sortedArray[sortedArray.length-1].id
+  	return highestId;
   }
 
   render() {
@@ -31,19 +62,19 @@ class Table extends React.Component {
       	<div style={flexBoxStyles}>
         	<h3 className='table__title'>Invoices</h3>
         	<div>
-        		<p className={'ib'}>{`Visar ${this.state.activeInvoices[0].id} - ${this.state.activeInvoices[this.state.activeInvoices.length-1].id} av ${this.state.invoices.length}`}</p>
-        		<button className={'ib'} style={prevBtnStyles} onClick={() => this.state.showPrevItems(this.state.activeInvoices)}><img style={arrowStyles} src={Arrow} alt='#' /></button>
-        		<button className={'ib'} style={nextBtnStyles} onClick={() => this.state.showNextItems(this.state.activeInvoices)}><img style={arrowStyles} src={Arrow} alt='#' /></button>
+        		<p className={'ib'}>{`Visar ${this.numberOfFirstItem()} - ${this.numberOfLastItem()} av ${this.state.invoices.length}`}</p>
+        		<button className={'ib'} style={prevBtnStyles} onClick={() => this.state.showPrevItems()}><img style={arrowStyles} src={Arrow} alt='#' /></button>
+        		<button className={'ib'} style={nextBtnStyles} onClick={() => this.state.showNextItems()}><img style={arrowStyles} src={Arrow} alt='#' /></button>
         	</div>
         </div>
         <table style={tableStyles}>
           <thead>
             <tr className='table__row'>
-              <th><span>Type</span></th>
-              <th><span>Account name</span></th>
-              <th><span>Status</span></th>
-              <th><span>Currency</span></th>
-              <th><span>Balance</span></th>
+              <th onClick={() => this.state.sortActiveArray('type')}><span>Type</span></th>
+              <th onClick={() => this.state.sortActiveArray('name')}><span>Account name</span></th>
+              <th onClick={() => this.state.sortActiveArray('status')}><span>Status</span></th>
+              <th onClick={() => this.state.sortActiveArray('currency')}><span>Currency</span></th>
+              <th onClick={() => this.state.sortActiveArray('balance')}><span>Balance</span></th>
             </tr>
           </thead>
           <tbody>{tableRows}</tbody>

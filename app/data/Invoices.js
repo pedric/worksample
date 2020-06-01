@@ -1,7 +1,7 @@
 import Faker from 'faker';
 
 const Invoices = [];
-const numberOfInvoices = 100;
+const numberOfInvoices = 106;
 
 for (let i = 0; i < numberOfInvoices; i++) {
   const accountHolder = Faker.name.lastName(); // Set this here to get the same name on account and alt-text

@@ -57,7 +57,8 @@ const GlobalStyle = createGlobalStyle`
   .table__row {
     height: 44px;
 
-    &:hover {
+    &--body:hover,
+    & th:hover {
       background: #F2F2F2;
       cursor:pointer;
     }
@@ -151,6 +152,44 @@ const GlobalStyle = createGlobalStyle`
     
     table {
       width: 100%;
+      table-layout:fixed;
+      color: #6A6A6A;
+
+      td {
+        padding: 8px 0px;
+        vertical-align: top;
+      }
+
+      .modal__label {
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+
+      .modal__value {
+        padding-top: 4px;
+      }
+    }
+
+    .modal__closeButtonWrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 8px;
+
+      button {
+        border: none;
+        outline: none;
+        background: none;
+        width: 34px;
+        height: 34px;
+        padding: 2px;
+      }
+
+      img {
+        opacity: .75;
+        width: 30px;
+        height: 30px;
+      }
     }
   }
 

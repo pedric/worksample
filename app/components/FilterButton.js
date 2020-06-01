@@ -6,7 +6,7 @@ class FilterButton extends React.Component {
     super();
     this.state = {
     	filterBox: false,
-    	filter: props.filter
+    	filterFunction: props.filter
     };
     this.toggleFilterBox = this.toggleFilterBox.bind(this)
   }
@@ -46,7 +46,7 @@ class FilterButton extends React.Component {
 	        <span style={dotStyles} />
 	        <span style={dotStyles} />
 	      </button>
-	      <FilterBox status={this.state.filterBox} filter={this.state.filter}/>
+	      <FilterBox status={this.state.filterBox} filterFunction={this.state.filterFunction} toggleFilterBox={this.toggleFilterBox} />
 	     </div>
     );
   }

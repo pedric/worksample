@@ -8,7 +8,7 @@ function TableRow(props) {
   let status = props.item.status ? 'active' : 'deactivated'
 
   return (
-    <tr className='table__row' style={styles} onClick={() => props.toggleModal(props.item, true)}>
+    <tr className='table__row table__row--body' style={styles} onClick={() => props.toggleModal(props.item, true)}>
       <td>{props.item.type}</td>
       <td>{props.item.name}</td>
       <td>{status}</td>
