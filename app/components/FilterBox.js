@@ -7,7 +7,7 @@ class FilterBox extends React.Component {
     	status: 'not-active',
     	filterFunction: props.filterFunction,
     	toggleFunction: props.toggleFilterBox
-    };
+    }
   }
 
   componentWillReceiveProps({status}) {
@@ -20,11 +20,39 @@ class FilterBox extends React.Component {
 
   render() {
 
+  	// <button onClick={() => this.state.toggleFunction()}>Close</button>
+
+  	const wrapperStyles = {
+  		display: 'flex',
+  		justifyContent: 'center',
+  		alignItems: 'center'
+  	}
+
+  	const titleStyles = {
+  		display: 'inline-block',
+  		margin: '0px 8px 0 0',
+  		color: '#0276ff'
+  	}
+
+  	const inputStyles = {
+  		margin: '0px 0 0 10px'	
+  	}
+
+  	const labelStyles = {
+  		color: '#0276ff',
+  		fontSize: '14px',
+    	margin: '0 0 0 2px'
+  	}
+
     return (
       <div className={'filterbox '+ this.state.status}>
-        <h2>FILTERBOX KOMPONENT</h2>
-        <p onClick={() => this.state.filterFunction('filtertyp')}>Click me to filter</p>
-        <p onClick={() => this.state.toggleFunction()}>Click me to close</p>
+      <div style={wrapperStyles}>
+	        <h3 style={titleStyles}>Filter:</h3>
+					<input style={inputStyles} onChange={() => this.state.filterFunction('active',event.target.checked)} type='checkbox' id='active' name='active' value='active' /><label style={labelStyles} for='active'>active</label>
+					<input style={inputStyles} onChange={() => this.state.filterFunction('deactivated',event.target.checked)} type='checkbox' id='deactivated' name='deactivated' value='deactivated' /><label style={labelStyles} for='deactivated'>deactivated</label>
+					<input style={inputStyles} onChange={() => this.state.filterFunction('checking',event.target.checked)} type='checkbox' id='checking' name='checking' value='checking' /><label style={labelStyles} for='checking'>checking</label>
+					<input style={inputStyles} onChange={() => this.state.filterFunction('savings',event.target.checked)} type='checkbox' id='savings' name='savings' value='savings' /><label style={labelStyles} for='savings'>savings</label>
+				</div>
       </div>
     );
   }

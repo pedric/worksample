@@ -10,6 +10,22 @@ const PageData = {
       balance: 'balance',
     },
   },
+  menu: {
+    	items: [
+    		{
+    			url: '#',
+    			name: 'Link one'
+    		},
+    		{
+    			url: '#',
+    			name: 'Link two'
+    		},
+    		{
+    			url: '#',
+    			name: 'Link three'
+    		}
+    	]
+    }
 };
 
 export default PageData;

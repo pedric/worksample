@@ -17,32 +17,23 @@ class Table extends React.Component {
 
   componentWillReceiveProps(props){
   	this.setState({activeInvoices: props.activeInvoices})
+  	this.setState({invoices: props.invoices})
   }
 
   numberOfFirstItem(){
-  	// this.state.activeInvoices[0].id
-  	let sortedArray = this.state.activeInvoices
-  	let lowestId = ''
-  	sortedArray.sort(function(a,b){
-			let id_a = a.id
-			let id_b = b.id
-				return parseFloat( id_a ) - parseFloat( id_b )
-		})
-		lowestId = sortedArray[0].id
-  	return lowestId;
+  	let low_number = ''
+  	if(this.state.invoices.indexOf(this.state.activeInvoices[0])){
+  		low_number = this.state.invoices.indexOf(this.state.activeInvoices[0])
+  	}
+  	return low_number+1;
   }
 
   numberOfLastItem(){
-  	// this.state.activeInvoices[this.state.activeInvoices.length-1].id
-  	let sortedArray = this.state.activeInvoices
-  	let highestId = ''
-  	sortedArray.sort(function(a,b){
-			let id_a = a.id
-			let id_b = b.id
-				return parseFloat( id_a ) - parseFloat( id_b )
-		})
-		highestId = sortedArray[sortedArray.length-1].id
-  	return highestId;
+  	let high_number = ''
+		if(this.state.invoices.indexOf(this.state.activeInvoices[this.state.activeInvoices.length-1])){
+  		high_number = this.state.invoices.indexOf(this.state.activeInvoices[this.state.activeInvoices.length-1])
+  	}
+  	return parseInt(high_number+1);
   }
 
   render() {

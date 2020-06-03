@@ -12,6 +12,7 @@ import Filters from 'data/Filters';
 import Header from 'components/Header';
 import Table from 'components/Table';
 import Modal from 'components/Modal';
+import Menu from 'components/Menu';
 import BackgroundImage from 'images/background_1.png';
 
 class HomePage extends React.Component {
@@ -24,7 +25,8 @@ class HomePage extends React.Component {
       content: PageData,
       filters: Filters,
       modal: false,
-      previouslySortedBy: false
+      previouslySortedBy: false,
+      activeFilters: []
     }
     this.showPrevItems = this.showPrevItems.bind(this)
     this.showNextItems = this.showNextItems.bind(this)
@@ -33,8 +35,55 @@ class HomePage extends React.Component {
     this.filterInvoices = this.filterInvoices.bind(this)
   }
 
-  filterInvoices(filterType){
-  	console.log(filterType)
+  filterInvoices(type, e){
+
+  	let tempArray = this.state.invoices
+  	if(e){
+  		this.state.activeFilters.push(type)
+  	} else if(!e){
+  		this.state.activeFilters.splice(this.state.activeFilters.indexOf(type),1)
+  	}
+
+  	if(this.state.activeFilters.length > 0){
+
+  		for (var i = 0; i < this.state.activeFilters.length; i++) {
+  			
+  			if(this.state.activeFilters[i] === 'active'){
+  				type = type === 'active' ? true : false
+  				tempArray = tempArray.filter(item=> item.status === type)
+  			}
+
+  			if(this.state.activeFilters[i] === 'deactivated'){
+  				type = type === 'active' ? true : false
+  				tempArray = tempArray.filter(item=> item.status === type)
+  			}
+
+  			if(this.state.activeFilters[i] === 'checking'){
+  				type = this.state.activeFilters[i]
+  				tempArray = tempArray.filter(item=> item.type === type)
+  			}
+
+  			if(this.state.activeFilters[i] === 'savings'){
+  				type = this.state.activeFilters[i]
+  				tempArray = tempArray.filter(item=> item.type === type)
+  			}
+  		}
+
+  		if(tempArray.length > 0){
+	  		tempArray.sort(function(a,b){
+	  			let a_id = a.id
+	  			let b_id = b.id
+	  			
+					if(a_id < b_id){ return -1 }
+					if(a_id > b_id){ return 1 }
+					return 0
+	  		})
+	  	}
+
+  		this.setState({invoices: tempArray, activeInvoices: tempArray.slice(0, 20)})
+  	} else {
+  		this.setState({invoices: Invoices, activeInvoices: Invoices.slice(0, 20)})
+  	}
   }
 
   sortActiveArray(type){
@@ -130,44 +179,32 @@ class HomePage extends React.Component {
   }
 
   showPrevItems(){
+  	let low, high
+		high = parseInt( this.state.invoices.indexOf(this.state.activeInvoices[0]) )
+		low = parseInt(high-20)
 
-  	let lowestId = ''
-  	let highestId = ''
-  	let sortedPreviousArray = this.state.activeInvoices.sort(function(a,b){
-			let id_a = a.id
-			let id_b = b.id
-				return parseFloat( id_a ) - parseFloat( id_b )
-		})
-		highestId = parseInt(sortedPreviousArray[0].id-1)
-		lowestId = parseInt(highestId-20)
-
-		if(lowestId <= 0) {
-			lowestId = 0
+		if(low <= 0) {
+			low = 0
 		}
 
-		if(!highestId <= 0){
-			this.setState({activeInvoices: this.state.invoices.slice(lowestId,highestId)})
+		if(!high <= 0){
+			let newInvoices = this.state.invoices.slice(low,high)
+			this.setState({activeInvoices: newInvoices})
 		}
   }
 
   showNextItems(){
-
-  	let lowestId = ''
-  	let highestId = ''
-  	let sortedPreviousArray = this.state.activeInvoices.sort(function(a,b){
-			let id_a = a.id
-			let id_b = b.id
-				return parseFloat( id_a ) - parseFloat( id_b )
-		})
-		lowestId = parseInt(sortedPreviousArray[sortedPreviousArray.length-1].id)
-		highestId = parseInt(lowestId+20)
+  	let low, high
+		low = parseInt( this.state.invoices.indexOf(this.state.activeInvoices[this.state.activeInvoices.length-1])+1 )
+		high = parseInt( low+20 )
 		
-		if(highestId > Invoices.length) {
-			highestId = Invoices.length
+		if(high > this.state.invoices.length) {
+			high = this.state.invoices.length
 		}
-
-		if(lowestId < Invoices.length){
-			this.setState({activeInvoices: this.state.invoices.slice(lowestId,highestId)})
+		
+		if(low < this.state.invoices.length){
+			let newInvoices = this.state.invoices.slice(low,high)
+			this.setState({activeInvoices: newInvoices})
 		}
   }
 
@@ -192,6 +229,7 @@ class HomePage extends React.Component {
       <div style={flexBoxStyles}>
         <div className="listWrapper">
         	<Header data={this.state.content} filterFunction={this.filterInvoices} />
+        	<Menu />
         	<div className="box">
         		<Table key={'table_1'} invoices={this.state.invoices} activeInvoices={this.state.activeInvoices} showPrevItems={this.showPrevItems} showNextItems={this.showNextItems} toggleModal={this.toggleModal} sortActiveArray={this.sortActiveArray} />
         	</div>

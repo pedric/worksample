@@ -113,15 +113,18 @@ const GlobalStyle = createGlobalStyle`
   .filterbox {
     display: none;
     position: absolute;
-    background: lightgray;
+    text-align: left;
     padding: 10px;
-    width: 500px;
+    width: max-content;
     right: 0;
     bottom: 0;
-    transform: translateY(100%);
-    z-index: 999;
+    box-shadow: 0px 2px 4px rgba(0,0,0,.05);
+    transform: translate(-15%,20%);
+    z-index: 998;
 
-    &.active { display: block; }
+    &.active { 
+      display: block; 
+    }
   }
 
   .modal {
@@ -189,6 +192,92 @@ const GlobalStyle = createGlobalStyle`
         opacity: .75;
         width: 30px;
         height: 30px;
+      }
+    }
+  }
+
+  .menubutton {
+    position: absolute;
+    top: 35px;
+    right: 35px;
+    z-index: 999;
+  }
+
+  .menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f2f2f2;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    right: -100%;
+    z-index: 998;
+    opacity: 0;
+    transition: right 100ms ease-in-out, opacity 150ms ease-in-out;
+
+    &.active {
+      right: 0%;
+      opacity: 1;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        text-align: center;
+
+        a {
+          color: #696969;
+          padding: 16px;
+          text-decoration: none;
+          font-size: 24px;
+          line-height: 1.6;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  .menubutton {
+
+    button {
+      position: relative;
+      padding: 33px 22px;
+      background: #fff;
+      border: none;
+      outline: none;
+      width: 90px;
+      height: 90px;
+
+      &:hover {
+        span {
+          transform: translate(-50%,-50%)scale(1.05);
+        }
+      }
+
+      span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 44px;
+        height: 3px;
+        background: #000;
+        transition: all 100ms ease-in-out;
+
+        &:first-child {
+          top: 40%;
+        }
+
+        &:last-child {
+          top: 60%;
+        }
       }
     }
   }
