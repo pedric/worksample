@@ -216,6 +216,7 @@ class HomePage extends React.Component {
     const flexBoxStyles = {
       display: 'flex',
       flexWrap: 'wrap',
+      minHeight: '100vh'
     };
 
     const modalStyles = {

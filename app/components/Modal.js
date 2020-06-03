@@ -7,6 +7,7 @@ class Modal extends React.Component {
 		this.state= {
 			item: false,
 			status: 'not-active',
+			loaded: '',
 			toggleModal: props.toggleModal
 		}
 	}
@@ -24,14 +25,6 @@ class Modal extends React.Component {
 
 	render(){
 
-		const titleStyles = {
-    	color: '#0277FF',
-    	fontWeight: '400',
-    	fontSize: '28px',
-    	margin: '0',
-    	paddingBottom: '16px'
-  	}
-
   	const contentWrapperStyles = { padding: '24px' }
 
 		if(this.state.item){
@@ -42,7 +35,7 @@ class Modal extends React.Component {
 						<img src={this.state.item.image.url} alt={this.state.item.image.alt} />
 					</div>
 					<div style={contentWrapperStyles}>
-						<h3 style={titleStyles}>{this.state.item.name}</h3>
+						<h3>{this.state.item.name}</h3>
 						<table>
 							<tbody>
 							<tr>

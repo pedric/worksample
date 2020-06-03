@@ -31,17 +31,42 @@ const GlobalStyle = createGlobalStyle`
   .listWrapper {
     flex-basis: 55%;
     max-width: 55%;
-    min-width: 400px;
     padding: 42px 36px;
+
+    @media screen and (max-width:1000px){
+      flex-basis: 100%;
+      max-width: 100%;
+      padding: 42px 10px;      
+    }
   }
 
   .modalWrapper {
     flex-basis: 45%;
     max-width: 45%;
+
+    @media screen and (max-width:1000px){
+      flex-basis: 100%;
+      max-width: 100%;
+      padding: 0;      
+    }
   }
 
   .table {
     color: #6A6A6A;
+    @media screen and (max-width:1350px){
+      font-size: 12px;
+    }
+
+    &__flexWrap {
+      display: flex; 
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 50px;
+
+      @media screen and (max-width:1000px){
+        padding: 16px 10px;        
+      }
+    }
 
     thead {
       height: 41px;
@@ -92,11 +117,17 @@ const GlobalStyle = createGlobalStyle`
     td:first-child,
     th:first-child {
       padding-left: 50px;
+      @media screen and (max-width:1000px){
+        padding-left: 10px;
+      }
     }
 
     td:last-child,
     th:last-child {
-      padding-right: 50px; 
+      padding-right: 50px;
+      @media screen and (max-width:1000px){
+        padding-right: 10px;
+      }
     }
   }
 
@@ -122,6 +153,36 @@ const GlobalStyle = createGlobalStyle`
     transform: translate(-15%,20%);
     z-index: 998;
 
+    @media screen and (max-width:1360px){
+      bottom:unset;
+      top:0;
+      background: #fff;
+      padding: 20px;
+      transform: translate(0%,20%);
+    }
+
+    &__flexWrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @media screen and (max-width:1360px){
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      &>div {
+        display: flex;
+        align-items: center;
+        margin: 0 5px;
+        
+        @media screen and (max-width:1360px){
+          margin: 10px 0;
+        }
+      }
+      }
+    }
+
     &.active { 
       display: block; 
     }
@@ -134,8 +195,26 @@ const GlobalStyle = createGlobalStyle`
     transform: translate(-50%,-50%);
     width: 420px;
 
+    @media screen and (max-width:1000px){
+      position: fixed;
+      background: #0276ff;
+      width: 90%;
+    }
+
     .modal__wrapper {
       background: #fff;
+
+      h3 {
+        color: #0277FF;
+        font-weight: 400;
+        font-size: 28px;
+        margin: 0;
+        padding-bottom: 16px;
+
+        @media screen and (max-width:1000px){
+          font-size: 18px;
+        }
+      }
     }
 
     .modal__imageWrapper {
@@ -170,6 +249,9 @@ const GlobalStyle = createGlobalStyle`
 
       .modal__value {
         padding-top: 4px;
+        @media screen and (max-width:1000px){
+          font-size: 12px;
+        }
       }
     }
 
@@ -201,21 +283,34 @@ const GlobalStyle = createGlobalStyle`
     top: 35px;
     right: 35px;
     z-index: 999;
+
+    @media screen and (max-width:1000px){
+      position: fixed;
+      top: unset;
+      right: 35px;
+      bottom: 35px;
+      box-shadow: 0px 2px 4px rgba(0,0,0,.5);
+    }
   }
 
   .menu{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f2f2f2;
+    background: #154988;
     position: fixed;
     top: 0;
     bottom: 0;
-    width: 100%;
+    width: 55%;
     right: -100%;
     z-index: 998;
     opacity: 0;
+    box-shadow: -10px -3px 50px rgba(0,0,0,.1);
     transition: right 100ms ease-in-out, opacity 150ms ease-in-out;
+
+    @media screen and (max-width:1000px){
+      width: 90%;
+    }
 
     &.active {
       right: 0%;
@@ -230,7 +325,7 @@ const GlobalStyle = createGlobalStyle`
         text-align: center;
 
         a {
-          color: #696969;
+          color: #fff;
           padding: 16px;
           text-decoration: none;
           font-size: 24px;

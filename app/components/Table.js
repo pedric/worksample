@@ -39,7 +39,7 @@ class Table extends React.Component {
   render() {
 
     const tableStyles = { width: '100%', margin: '0 auto', textAlign: 'left' }
-    const flexBoxStyles = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 50px' }
+    // const flexBoxStyles = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 50px' }
     const prevBtnStyles = { position: 'relative', margin: '0 5px 0 20px', padding: '4px', border: 'none', outline: 'none', background: 'none', height: '21px', width: '20px' }
     const nextBtnStyles = { position: 'relative', margin: '0 0 0 5px', padding: '4px', border: 'none', outline: 'none', background: 'none', height: '21px', width: '20px', transform: 'scaleX(-1)' }
     const arrowStyles = { maxHeight: '13px', maxWidth: '13px', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }
@@ -50,7 +50,7 @@ class Table extends React.Component {
 
     return (
       <div className='table'>
-      	<div style={flexBoxStyles}>
+      	<div className='table__flexWrap'>
         	<h3 className='table__title'>Invoices</h3>
         	<div>
         		<p className={'ib'}>{`Visar ${this.numberOfFirstItem()} - ${this.numberOfLastItem()} av ${this.state.invoices.length}`}</p>
