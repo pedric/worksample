@@ -155,6 +155,7 @@ const GlobalStyle = createGlobalStyle`
 
     @media screen and (max-width:1360px){
       bottom:unset;
+      min-width: 130px;
       top:0;
       background: #fff;
       padding: 20px;
